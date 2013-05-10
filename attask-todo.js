@@ -20,7 +20,7 @@ request('https://hub.attask.com/attask/api-internal/login', loginOptions, functi
 		var sessionID = body.data.sessionID;
 		var userID = body.data.userID;
 
-		console.log('logged in as', username, 'with session ID', sessionID);
+		console.log('logged in as', username, 'with session ID', sessionID); //TODO: You are a monkey
 
 		todos.forEach(function(todo) {
 			todo = eval('('+todo+')');

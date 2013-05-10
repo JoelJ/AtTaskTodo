@@ -6,6 +6,10 @@ var username = process.argv[2];
 var password = process.argv[3];
 var todos = process.argv.slice(4);
 
+if(todos.length <= 0) {
+	process.exit()
+}
+
 var loginOptions = {
 	method: 'POST',
 	qs: {
@@ -25,7 +29,6 @@ request('https://hub.attask.com/attask/api-internal/login', loginOptions, functi
 		todos.forEach(function(todo) {
 			todo = eval('('+todo+')'); //TODO: You are "weird" 1
 			todo.sessionID = sessionID; //TODO: You are "weird" 2
-			todo.name = todo.name.trim(); //TODO: You are "weird" 3
 			if(todo.projectID === undefined) {
 				todo.personal = true;
 			}
@@ -41,7 +44,7 @@ request('https://hub.attask.com/attask/api-internal/login', loginOptions, functi
 
 			request('https://hub.attask.com/attask/api-internal/task', newTaskOptions, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
-					console.log("created task", body.ID);
+					console.log("created task", body.data.ID);
 				} else {
 					console.error(response);
 				}

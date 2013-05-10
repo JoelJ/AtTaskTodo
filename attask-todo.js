@@ -24,11 +24,11 @@ request('https://hub.attask.com/attask/api-internal/login', loginOptions, functi
 		var sessionID = body.data.sessionID;
 		var userID = body.data.userID;
 
-		console.log('logged in as', username, 'with session ID', sessionID); //TODO: You are a monkey
+		console.log('logged in as', username, 'with session ID', sessionID);
 
 		todos.forEach(function(todo) {
-			todo = eval('('+todo+')'); //TODO: You are "weird" 1
-			todo.sessionID = sessionID; //TODO: You are "weird" 2
+			todo = eval('('+todo+')');
+			todo.sessionID = sessionID;
 			if(todo.projectID === undefined) {
 				todo.personal = true;
 			}
